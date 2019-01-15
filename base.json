@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "module": "commonjs",
+    // This configuration is designed to be used with Babel, so turn asset output off
+    "noEmit": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    // This prevents stripping comments from typedef files
+    "removeComments": false,
+    "strict": true,
+    "target": "es2018"
+  }
+}

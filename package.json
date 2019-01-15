@@ -1,0 +1,11 @@
+{
+  "name": "@goodeggs/tsconfig",
+  "version": "1.0.0",
+  "description": "Shared Good Eggs TypeScript configurations.",
+  "repository": "git@github.com:goodeggs/goodeggs-tsconfig.git",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/goodeggs/goodeggs-tsconfig/issues"
+  },
+  "homepage": "https://github.com/goodeggs/goodeggs-tsconfig#readme"
+}
