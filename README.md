@@ -28,6 +28,16 @@ Use the [`extends` property](https://www.typescriptlang.org/docs/handbook/tsconf
 }
 ```
 
+## Releasing
+
+This repo is **not** currently configured to publish automatically from CI.
+
+To release a new version of this module, use yarn locally to publish the version and create the git tag, then push:
+```sh
+yarn publish --new-version=<major|minor|patch>
+git push --follow-tags
+```
+
 ### Listing of Configurations
 
 - `@goodeggs/tsconfig/base`: A base configuration. Makes no assumptions about the environment you're targeting.
