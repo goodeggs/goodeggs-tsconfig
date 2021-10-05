@@ -11,6 +11,7 @@
     // This prevents stripping comments from typedef files
     "removeComments": false,
     "strict": true,
-    "target": "es2018"
+    // This configuration is designed to be used with Babel and @babel/preset-env
+    "target": "ESNext"
   }
 }
