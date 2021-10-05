@@ -2,6 +2,11 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    // Explicitly only include ESNext libs, since TS for some reason includes browser-specific
+    // libs (DOM) by default, which can be confusing and error-prone.
+    "lib": [
+      "ESNext"
+    ],
     "module": "commonjs",
     // This configuration is designed to be used with Babel, so turn asset output off
     "noEmit": true,
