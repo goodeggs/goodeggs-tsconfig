@@ -1,0 +1,29 @@
+node-cache: &node-cache
+  id: node
+  key: "v1-cache-{{ id }}-{{ runner.os }}-{{ checksum 'yarn.lock' }}"
+  restore-keys:
+    - 'v1-cache-{{ id }}-{{ runner.os }}-'
+    - 'v1-cache-{{ id }}-'
+  paths:
+    - node_modules
+
+all-plugins: &all-plugins
+  - gencer/cache#v2.4.8: *node-cache
+
+steps:
+  - label: 'Install'
+    command: NODE_ENV=development yarn install --frozen-lockfile
+    plugins: *all-plugins
+  - wait
+  - label: 'Test'
+    command: yarn test
+    plugins: *all-plugins
+  - wait
+  - label: 'Publish to registry'
+    if: build.tag != null
+    command:
+      - export PATH="./node_modules/.bin:$PATH"
+      - yarn publish
+    concurrency: 1
+    concurrency_group: 'goodeggs-tsconfig/publish'
+    plugins: *all-plugins
