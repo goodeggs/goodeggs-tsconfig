@@ -7,6 +7,9 @@
   "bugs": {
     "url": "https://github.com/goodeggs/goodeggs-tsconfig/issues"
   },
+  "scripts": {
+    "test": "echo 'No tests yet'"
+  },
   "homepage": "https://github.com/goodeggs/goodeggs-tsconfig#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
