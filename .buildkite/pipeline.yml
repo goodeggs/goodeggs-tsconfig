@@ -1,23 +1,20 @@
-node-cache: &node-cache
-  id: node
-  key: "v1-cache-{{ id }}-{{ runner.os }}-{{ checksum 'yarn.lock' }}"
-  restore-keys:
-    - 'v1-cache-{{ id }}-{{ runner.os }}-'
-    - 'v1-cache-{{ id }}-'
-  paths:
-    - node_modules
+plugin-node-cache: &plugin-node-cache
+  cache_node: true
 
-all-plugins: &all-plugins
-  - gencer/cache#v2.4.8: *node-cache
+plugin-secrets: &plugin-secrets
+  secrets:
+    NPM_TOKEN: 'y5kWMs9vm9c/P3-Z-IAtiaB-0syFrd4wCQ/bmaYVrKaUgpIqtXs4g2suPEN-mosoBmM8LLR1w5SVEMU2_s4'
 
 steps:
   - label: 'Install'
     command: NODE_ENV=development yarn install --frozen-lockfile
-    plugins: *all-plugins
+    plugins:
+      - ssh://git@github.com/goodeggs/goodeggs-core-buildkite-plugin#v0.0.18: *plugin-node-cache
   - wait
   - label: 'Test'
     command: yarn test
-    plugins: *all-plugins
+    plugins:
+      - ssh://git@github.com/goodeggs/goodeggs-core-buildkite-plugin#v0.0.18: *plugin-node-cache
   - wait
   - label: 'Publish to registry'
     if: build.tag != null
@@ -26,4 +23,6 @@ steps:
       - yarn publish
     concurrency: 1
     concurrency_group: 'goodeggs-tsconfig/publish'
-    plugins: *all-plugins
+    plugins:
+      - ssh://git@github.com/goodeggs/goodeggs-core-buildkite-plugin#v0.0.18: *plugin-node-cache
+      - ssh://git@github.com/goodeggs/goodeggs-core-buildkite-plugin#v0.0.18: *plugin-secrets
