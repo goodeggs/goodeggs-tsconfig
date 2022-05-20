@@ -1,6 +1,6 @@
 {
   "name": "@goodeggs/tsconfig",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Shared Good Eggs TypeScript configurations.",
   "repository": "git@github.com:goodeggs/goodeggs-tsconfig.git",
   "license": "MIT",
