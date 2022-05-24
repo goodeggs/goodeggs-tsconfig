@@ -28,8 +28,18 @@ Use the [`extends` property](https://www.typescriptlang.org/docs/handbook/tsconf
 }
 ```
 
+## Releasing
+
+This repo is **not** currently configured to publish automatically from CI.
+
+To release a new version of this module, use yarn locally to publish the version and create the git tag, then push:
+```sh
+yarn publish --new-version=<major|minor|patch>
+git push --follow-tags
+```
+
 ### Listing of Configurations
 
 - `@goodeggs/tsconfig/base`: A base configuration. Makes no assumptions about the environment you're targeting.
-- `@goodeggs/tsconfig/browser`: A base browser configuration. Assumes you are targeting a ES2018 feature set (and using Babel to achieve compatibility with older browsers if desired).
-- `@goodeggs/tsconfig/react`: A React/JSX configuration. Assumes you are targeting a ES2018 feature set (and using Babel to achieve compatibility with older browsers if desired).
+- `@goodeggs/tsconfig/browser`: A base browser configuration. Assumes you are targeting an ESNext feature set (and using Babel to achieve compatibility with older browsers if desired).
+- `@goodeggs/tsconfig/react`: A React/JSX configuration. Assumes you are targeting an ESNext feature set (and using Babel to achieve compatibility with older browsers if desired).

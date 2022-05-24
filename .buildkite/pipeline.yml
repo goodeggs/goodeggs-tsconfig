@@ -1,0 +1,28 @@
+plugin-node-cache: &plugin-node-cache
+  cache_node: true
+
+plugin-secrets: &plugin-secrets
+  secrets:
+    NPM_TOKEN: 'y5kWMs9vm9c/P3-Z-IAtiaB-0syFrd4wCQ/bmaYVrKaUgpIqtXs4g2suPEN-mosoBmM8LLR1w5SVEMU2_s4'
+
+plugins: &plugins
+  - ssh://git@github.com/goodeggs/goodeggs-core-buildkite-plugin#v0.0.18: *plugin-node-cache
+  - ssh://git@github.com/goodeggs/goodeggs-core-buildkite-plugin#v0.0.18: *plugin-secrets
+
+steps:
+  - label: 'Install'
+    command: NODE_ENV=development yarn install --frozen-lockfile
+    plugins: *plugins
+  - wait
+  - label: 'Test'
+    command: yarn test
+    plugins: *plugins
+  - wait
+  - label: 'Publish to registry'
+    if: build.tag != null
+    command:
+      - export PATH="./node_modules/.bin:$PATH"
+      - yarn publish
+    concurrency: 1
+    concurrency_group: 'goodeggs-tsconfig/publish'
+    plugins: *plugins
