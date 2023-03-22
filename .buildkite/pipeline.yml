@@ -6,8 +6,8 @@ plugin-secrets: &plugin-secrets
     NPM_TOKEN: 'y5kWMs9vm9c/P3-Z-IAtiaB-0syFrd4wCQ/bmaYVrKaUgpIqtXs4g2suPEN-mosoBmM8LLR1w5SVEMU2_s4'
 
 plugins: &plugins
-  - ssh://git@github.com/goodeggs/goodeggs-core-buildkite-plugin#v0.0.18: *plugin-node-cache
-  - ssh://git@github.com/goodeggs/goodeggs-core-buildkite-plugin#v0.0.18: *plugin-secrets
+  - ssh://git@github.com/goodeggs/goodeggs-core-buildkite-plugin#v0.1.1: *plugin-node-cache
+  - ssh://git@github.com/goodeggs/goodeggs-core-buildkite-plugin#v0.1.1: *plugin-secrets
 
 steps:
   - label: 'Install'
